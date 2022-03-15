@@ -12,17 +12,30 @@
 </head>
 
 <body>
-    <h1>
+    <h1 class="mt-5">
         Word widget
     </h1>
-    <div class="d-flex justify-content-around">
-        <div class="textbox">
-            <label for="fruits_emoji" class="w-7">Enter a sentence</label>
-            <input type="text" class="input" id="textbox" name="textbox">
+
+    <h4 class="mt-5">
+        Please enter a sentence of more than 5 words
+    </h4>
+
+    <div class="error">
+    
+      </div>
+
+    <div class="container">
+        <div class="pt-3 justify-content-center row">
+            <div class="col-5">
+                <div class="form-group">
+                    <textarea class="input form-control" rows="3" style="height:100%;" id="exampleFormControlTextarea1"></textarea>
+                </div>
+            </div>
         </div>
-
-
-    <div><button type="button" onclick="wordGame()">Add</button></div>
+        <div class="col">
+            <div class="p-5"><button type="button" class="btn btn-secondary" onclick="wordGame()">Add</button></div>
+        </div>
+    </div>
     </div>
 
     <ul class="wordSentence"> </ul>

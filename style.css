@@ -2,6 +2,11 @@ mark{
     background-color: #FFFF00
 }
 
+.error{
+    color: red;
+    font-weight:500;
+}
+
 body{
     background-color: #ffeef2;
     text-align: center;   
