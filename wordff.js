@@ -31,21 +31,20 @@ const wordFactoryFunction = () => {
             }
         });
         return str;
-
     }
 
     const longestWord = sentence => {
         const words = sentence.split(' ');
         let longList = "";
-        let otherWords ="";
+        let otherLongWords ="";
         
         words.forEach(element => {
             if (longList.length <= element.length) {
                 longList = element
             }
-            otherWords = words.filter(element => element.length == longList.length);
+            otherLongWords = words.filter(element => element.length == longList.length);
         });
-        return otherWords;
+        return otherLongWords;
     }
 
     return {

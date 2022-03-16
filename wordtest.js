@@ -47,7 +47,7 @@ describe('Word game factory function', () => {
 
             assert.equal('delicious', word.longestWord('Spinach is green and delicious'));
         });
-        it('should return the longest words which are "delicious" and "recognize"', () => {
+        it(`should return words that have the longest length which are "delicious" and "recognize"`, () => {
             const word = wordFactoryFunction();
 
             assert.deepEqual([ "recognize","delicious" ], word.longestWord('We must recognize that spinach is delicious'));
