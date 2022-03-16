@@ -4,7 +4,19 @@ const displaySentence = document.querySelector('.wordSentence')
 const highlightedWords = document.querySelector('.highlight')
 const errorElem = document.querySelector('.error')
 const checkBox = document.querySelector('.checkbox')
-const wordInstance = wordFactoryFunction()
+const wordInstance = wordFactoryFunction();
+
+// var user = {
+//     author : true,
+//     firstName : "Jo",
+//     lastName : "Blogss"
+//    };
+
+// var templateString = document.querySelector('.entry').innerHTML;
+
+// var templateInstance = Handlebars.compile(templateString);
+
+// var html = templateInstance(user);
 
 const wordGame = () => {
     
@@ -31,6 +43,6 @@ const hideAndHighlight = () => {
         const findLongWord = displaySentence.innerHTML
 
         displaySentence.innerHTML = wordInstance.highlightedWords(findLongWord)
-        displaySentenceLength.innerHTML = ""
+        displaySentenceLength.innerHTML = `The longest word/s : ${wordInstance.longestWord(textElem.value)}`
     }
 }

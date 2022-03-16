@@ -30,20 +30,22 @@ const wordFactoryFunction = () => {
                 str += `${element} `
             }
         });
-        return `Longest words: ${str} `;
+        return str;
 
     }
 
     const longestWord = sentence => {
         const words = sentence.split(' ');
         let longList = "";
-
+        let otherWords ="";
+        
         words.forEach(element => {
             if (longList.length <= element.length) {
                 longList = element
             }
+            otherWords = words.filter(element => element.length == longList.length);
         });
-        return longList
+        return otherWords;
     }
 
     return {

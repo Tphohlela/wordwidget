@@ -26,13 +26,13 @@ describe('Word game factory function', () => {
         it('should only display the highlighted words (using mark tag) that are have more than 4 characters', () => {
             const word = wordFactoryFunction();
 
-            assert.equal('Longest words: <mark>Spinach</mark> <mark>green</mark> <mark>delicious</mark>  ', word.highlightedWords('<mark>Spinach</mark> is <mark>green</mark> and <mark>delicious</mark> '));
+            assert.equal('<mark>Spinach</mark> <mark>green</mark> <mark>delicious</mark> ', word.highlightedWords('<mark>Spinach</mark> is <mark>green</mark> and <mark>delicious</mark> '));
         });
 
         it('should only display the highlighted words (using mark tag) that are have more than 4 characters', () => {
             const word = wordFactoryFunction();
 
-            assert.equal('Longest words: <mark>having</mark> <mark>great</mark>  ', word.highlightedWords('Are you <mark>having</mark> a <mark>great</mark> day '));
+            assert.equal('<mark>having</mark> <mark>great</mark> ', word.highlightedWords('Are you <mark>having</mark> a <mark>great</mark> day '));
         });
     })
 
@@ -42,10 +42,15 @@ describe('Word game factory function', () => {
 
             assert.equal('having', word.longestWord('Are you having a great day'));
         });
-        it('should return the longest word which is "coding"', () => {
+        it('should return the longest word which is "delicious"', () => {
             const word = wordFactoryFunction();
 
             assert.equal('delicious', word.longestWord('Spinach is green and delicious'));
+        });
+        it('should return the longest words which are "delicious" and "recognize"', () => {
+            const word = wordFactoryFunction();
+
+            assert.deepEqual([ "recognize","delicious" ], word.longestWord('We must recognize that spinach is delicious'));
         });
     })
 });
