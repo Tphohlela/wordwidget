@@ -47,6 +47,7 @@ const hideAndHighlight = () => {
             }
         });
         displaySentence.innerHTML = `Longest words: ${str} `
+        displaySentenceLength.innerHTML = ""
     }
 }
 
