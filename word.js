@@ -23,11 +23,14 @@ const wordGame = () => {
 
 const hideAndHighlight = () => {
 
-    if(checkBox.checked == true){
+    if(checkBox.checked == true && textElem.value == ""){
+        errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
+        setTimeout(() => errorElem.innerHTML = "", 5000);
+    }
+    else if(checkBox.checked == true){
         const findLongWord = displaySentence.innerHTML
 
         displaySentence.innerHTML = wordInstance.highlightedWords(findLongWord)
         displaySentenceLength.innerHTML = ""
     }
 }
-
