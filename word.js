@@ -7,20 +7,20 @@ const checkBox = document.querySelector('.checkbox')
 
 
 
-if(checkBox.checked == true ){
+// if(checkBox.checked == true ){
 
-    displaySentence.innerHTML = `tt is a city girl`
-}
+//     displaySentence.innerHTML = `tt is a city girl`
+// }
 
 const wordGame = () => {
 
     let wordsMoreThanFourStr = '';
-    
+
     const sentence = textElem.value
     const newArray = sentence.split(' ');
     // console.log(checkBox.checked)
 
-    textElem.value = null;
+    // textElem.value = null;
     
     if (newArray[4] == undefined) {
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
@@ -44,9 +44,9 @@ const wordGame = () => {
     }
 }
 
-const hideAndHighlight = () => {
+// const hideAndHighlight = () => {
 
-    if(checkBox.checked == true){
-        displaySentence.innerHTML = `Hey`   
-    }
-}
+//     if(checkBox.checked == true){
+//         displaySentence.innerHTML = `Hey`   
+//     }
+// }
