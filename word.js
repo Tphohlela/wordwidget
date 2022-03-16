@@ -36,16 +36,17 @@ const wordGame = () => {
 
 const hideAndHighlight = () => {
 
+    let str = '';
+
     if(checkBox.checked == true){
         const findLongWord = displaySentence.innerHTML.split(' ')
 
         findLongWord.forEach(element => {
             if (element.startsWith("<")) {
-                displaySentence.innerHTML = `${element}`
+                str += `${element} `
             }
         });
-
-        console.log(findLongWord.includes("<mark>"))
+        displaySentence.innerHTML = `Longest words: ${str} `
     }
 }
 
