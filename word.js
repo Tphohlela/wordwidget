@@ -4,6 +4,8 @@ const displaySentence = document.querySelector('.wordSentence')
 const highlightedWords = document.querySelector('.highlight')
 const errorElem = document.querySelector('.error')
 const checkBox = document.querySelector('.checkbox')
+const longestWords = document.querySelector('.longestWordsDisplay')
+
 const wordInstance = wordFactoryFunction();
 
 // var user = {
@@ -30,19 +32,29 @@ const wordGame = () => {
     else if (newArray[4] != undefined) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
+        longestWords.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
+
     }    
 }
 
 const hideAndHighlight = () => {
 
-    if(checkBox.checked == true && textElem.value == ""){
+    const sentence = textElem.value
+
+    if(checkBox.checked == false){
+        displaySentence.innerHTML = wordInstance.analyze(sentence)
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
+        longestWords.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
+       
+    }
+    else if(checkBox.checked == true && textElem.value == ""){
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
         setTimeout(() => errorElem.innerHTML = "", 5000);
     }
     else if(checkBox.checked == true){
         const findLongWord = displaySentence.innerHTML
-
         displaySentence.innerHTML = wordInstance.highlightedWords(findLongWord)
-        displaySentenceLength.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
+        displaySentenceLength.innerHTML = " "
+        longestWords.innerHTML = " "
     }
 }
