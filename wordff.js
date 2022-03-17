@@ -7,7 +7,7 @@ const wordFactoryFunction = () => {
        
         words.forEach(element => {
             if (element.length > 4) {
-                wordsMoreThanFourStr += `<mark>${element}</mark> `
+                wordsMoreThanFourStr += `<mark class="words">${element}</mark> `
             }
             else {
                 wordsMoreThanFourStr += `${element} `
@@ -26,8 +26,8 @@ const wordFactoryFunction = () => {
         const words = sentence.split(' ');
 
         words.forEach(element => {
-            if (element.startsWith("<")) {
-                str += `${element} `
+            if (element.length > 4) {
+                str += `<mark class="words">${element}</mark> `
             }
         });
         return str;
@@ -36,15 +36,22 @@ const wordFactoryFunction = () => {
     const longestWord = sentence => {
         const words = sentence.split(' ');
         let longList = "";
-        let otherLongWords ="";
-        
+        let display = '';
+
         words.forEach(element => {
             if (longList.length <= element.length) {
                 longList = element
             }
-            otherLongWords = words.filter(element => element.length == longList.length);
+        });       
+        words.forEach(element => {
+            if (longList.length == element.length) {
+                display += `<mark class="longword">${element}</mark> `
+            }
+            else {
+                display += `${element} `
+            }
         });
-        return otherLongWords;
+        return `${display}`;
     }
 
     return {

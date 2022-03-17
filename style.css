@@ -1,7 +1,10 @@
-mark{
-    background-color: #FFFF00
+.longword{
+    background-color: rgb(132, 132, 236);
 }
 
+.words{
+    background-color: yellow;
+}
 .error{
     color: red;
     font-weight:500;

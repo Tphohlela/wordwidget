@@ -41,6 +41,8 @@ const hideAndHighlight = () => {
 
     const sentence = textElem.value
 
+    console.log('asdbgnhmj,ksdfghjkl'+sentence)
+
     if(checkBox.checked == false){
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
@@ -52,8 +54,7 @@ const hideAndHighlight = () => {
         setTimeout(() => errorElem.innerHTML = "", 5000);
     }
     else if(checkBox.checked == true){
-        const findLongWord = displaySentence.innerHTML
-        displaySentence.innerHTML = wordInstance.highlightedWords(findLongWord)
+        displaySentence.innerHTML = wordInstance.highlightedWords(sentence)
         displaySentenceLength.innerHTML = " "
         longestWords.innerHTML = " "
     }
