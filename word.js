@@ -43,6 +43,6 @@ const hideAndHighlight = () => {
         const findLongWord = displaySentence.innerHTML
 
         displaySentence.innerHTML = wordInstance.highlightedWords(findLongWord)
-        displaySentenceLength.innerHTML = `The longest word/s : ${wordInstance.longestWord(textElem.value)}`
+        displaySentenceLength.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
     }
 }
