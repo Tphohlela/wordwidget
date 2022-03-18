@@ -40,15 +40,15 @@
                 <div class="col-12 fs-5">
 
                     <div class="d-flex flex-row">
-                        <div class="text-center p-1">
+                        <div class="col-4 text-center p-2">
                             <div class=""><button type="button" class="btn btn-secondary"
                                     onclick="wordGame()">Analyze</button></div>
                         </div>
 
-                        <div class="form-check ">
-                            <div class="form-check p-1">
+                        <div class="form-check">
+                            <div class="form-check p-2">
                                 <label class="p-1 form-check-label" for="flexCheckDefault">
-                                    Hide
+                                    Click to only see highlighted words 
                                 </label>
                                 <input class="checkbox form-check-input" onchange="hideAndHighlight()" type="checkbox"
                                     id="flexCheckDefault">
@@ -58,11 +58,13 @@
                 </div>
             </div>
 
+            <ul class="displayKey"></ul>
+
             <ul class="wordSentence"> </ul>
 
             <ul class="sentenceLength"></ul>
 
-            <ul class="longestWordsDisplay"></ul>
+       
 
             <!-- <div class="entry">
                 {{#if author}}
