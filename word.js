@@ -5,6 +5,7 @@ const highlightedWords = document.querySelector('.highlight')
 const errorElem = document.querySelector('.error')
 const checkBox = document.querySelector('.checkbox')
 const longestWords = document.querySelector('.longestWordsDisplay')
+const displayFiveSentences = document.querySelector('.displayFiveSentences')
 
 const wordInstance = wordFactoryFunction();
 
@@ -28,10 +29,13 @@ const wordGame = () => {
     if (newArray[4] == undefined) {
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
         setTimeout(() => errorElem.innerHTML = "", 5000);
+        displaySentence.innerHTML = ""
+        displaySentenceLength.innerHTML = ""
     }
     else if (newArray[4] != undefined) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
+        displayFiveSentences.innerHTML = wordInstance.storeFiveSentences(sentence)
     }    
 }
 

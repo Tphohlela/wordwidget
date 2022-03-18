@@ -1,4 +1,5 @@
 const wordFactoryFunction = () => {
+    let arr = [];
 
     const analyze = sentence => {
         let wordsMoreThanFourStr = '';
@@ -56,31 +57,22 @@ const wordFactoryFunction = () => {
         return str;
     }
 
-    const longestWord = sentence => {
-        const words = sentence.split(' ');
-        let longList = "";
-        let display = '';
-
-        words.forEach(element => {
-            if (longList.length <= element.length) {
-                longList = element
-            }
-        });
-        words.forEach(element => {
-            if (longList.length == element.length) {
-                display += `<mark class="longword">${element}</mark> `
-            }
-            else {
-                display += `${element} `
-            }
-        });
-        return `${display}`;
+    const storeFiveSentences = sentence => {
+    
+        if(arr[4]){
+            arr.splice(0, 1);
+            arr.push(sentence)
+        }
+        else{
+            arr.push(sentence)
+        }
+        return arr;
     }
 
     return {
-        longestWord,
         analyze,
         highlightedWords,
-        numberOfWordsInSentence
+        numberOfWordsInSentence,
+        storeFiveSentences
     }
 }
