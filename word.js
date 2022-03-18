@@ -35,7 +35,7 @@ const wordGame = () => {
     else if (newArray[4] != undefined) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
-        displayFiveSentences.innerHTML = wordInstance.storeFiveSentences(sentence)
+        // displayFiveSentences.innerHTML = wordInstance.storeFiveSentences(sentence)
     }    
 }
 

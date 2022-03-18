@@ -2,10 +2,13 @@ const wordFactoryFunction = () => {
     let arr = [];
 
     const analyze = sentence => {
+        const regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+        let cleanString = sentence.replace(regex, '');
+
         let wordsMoreThanFourStr = '';
         let longList = "";
         
-        const words = sentence.split(' ');
+        const words = cleanString.split(' ');
 
         words.forEach(element => {
             if (longList.length <= element.length) {
