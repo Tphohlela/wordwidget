@@ -2,18 +2,30 @@ const wordFactoryFunction = () => {
 
     const analyze = sentence => {
         let wordsMoreThanFourStr = '';
-
+        let longList = "";
+        
         const words = sentence.split(' ');
-       
+
         words.forEach(element => {
-            if (element.length > 4) {
+            if (longList.length <= element.length) {
+                longList = element
+            }
+        });
+
+        words.forEach(element => {
+            if (longList.length == element.length) {
+                wordsMoreThanFourStr += `<mark class="longword">${element}</mark> `
+            }
+            else if (element.length > 4) {
                 wordsMoreThanFourStr += `<mark class="words">${element}</mark> `
             }
+
             else {
                 wordsMoreThanFourStr += `${element} `
             }
         });
-        return `Words that have more than 4 characters : ${wordsMoreThanFourStr}`;
+
+        return `Sentence analyzed : ${wordsMoreThanFourStr}`;
     }
 
     const numberOfWordsInSentence = sentence => {
@@ -23,10 +35,21 @@ const wordFactoryFunction = () => {
 
     const highlightedWords = sentence => {
         let str = '';
+        let longList = "";
         const words = sentence.split(' ');
 
+        
         words.forEach(element => {
-            if (element.length > 4) {
+            if (longList.length <= element.length) {
+                longList = element
+            }
+        });
+        
+        words.forEach(element => {
+            if (longList.length == element.length) {
+                str += `<mark class="longword">${element}</mark> `
+            }
+            else if (element.length > 4) {
                 str += `<mark class="words">${element}</mark> `
             }
         });
@@ -42,7 +65,7 @@ const wordFactoryFunction = () => {
             if (longList.length <= element.length) {
                 longList = element
             }
-        });       
+        });
         words.forEach(element => {
             if (longList.length == element.length) {
                 display += `<mark class="longword">${element}</mark> `

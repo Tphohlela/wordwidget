@@ -32,8 +32,6 @@ const wordGame = () => {
     else if (newArray[4] != undefined) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
-        longestWords.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
-
     }    
 }
 
@@ -45,17 +43,14 @@ const hideAndHighlight = () => {
 
     if(checkBox.checked == false){
         displaySentence.innerHTML = wordInstance.analyze(sentence)
-        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
-        longestWords.innerHTML = `The longest word/s : <mark>${wordInstance.longestWord(textElem.value)}</mark>`
-       
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)      
     }
     else if(checkBox.checked == true && textElem.value == ""){
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
         setTimeout(() => errorElem.innerHTML = "", 5000);
     }
     else if(checkBox.checked == true){
-        displaySentence.innerHTML = wordInstance.highlightedWords(sentence)
-        displaySentenceLength.innerHTML = " "
-        longestWords.innerHTML = " "
+        displaySentence.innerHTML = `Showing only highlighted words : ${wordInstance.highlightedWords(sentence)}`
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence) 
     }
 }
