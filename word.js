@@ -7,7 +7,15 @@ const checkBox = document.querySelector('.checkbox')
 const longestWords = document.querySelector('.longestWordsDisplay')
 const displayFiveSentences = document.querySelector('.displayFiveSentences')
 
-const wordInstance = wordFactoryFunction();
+let dataFromLocal
+if (localStorage['sentences']) {
+    dataFromLocal = JSON.parse(localStorage.getItem('sentences'));
+} else {
+    dataFromLocal = []
+}
+let arr = dataFromLocal;
+
+const wordInstance = wordFactoryFunction(dataFromLocal);
 
 // var user = {
 //     author : true,
@@ -36,6 +44,10 @@ const wordGame = () => {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
         // displayFiveSentences.innerHTML = wordInstance.storeFiveSentences(sentence)
+        
+        // localStorage['sentences'] = JSON.stringify(arr);
+        // let list = dataFromLocal;
+        // displayFiveSentences.innerHTML = list;
     }    
 }
 

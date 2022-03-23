@@ -80,4 +80,13 @@ describe('Word game factory function', () => {
         });
      
     })
+    describe('Not counting regex characters', () => {
+        it('should not count analyzed as 9 characters', () => {
+            const word = wordFactoryFunction();
+
+            const result = word.letterCount('When the user clicks a button the sentence should be analyzed')
+
+            assert.equal('8', result );
+        });
+    });
 });
