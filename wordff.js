@@ -1,5 +1,6 @@
 const wordFactoryFunction = (storedSentences) => {
     let arr = storedSentences || [];
+    let storeAvg = 0
 
     const analyze = sentence => {
         let wordsMoreThanFourStr = '';
@@ -24,12 +25,12 @@ const wordFactoryFunction = (storedSentences) => {
 
         words.forEach(element => {
             if (element.includes('.')) {
-                if (longestLength == element.length - 1 ) {
+                if (longestLength == element.length - 1) {
                     wordsMoreThanFourStr += `<mark class="longword">${element}</mark> `
                 }
                 else if (element.length - 1 >= 5) {
                     wordsMoreThanFourStr += `<mark class="words">${element}</mark> `
-                } 
+                }
                 else {
                     wordsMoreThanFourStr += `${element} `
                 }
@@ -82,8 +83,8 @@ const wordFactoryFunction = (storedSentences) => {
                     str += `<mark class="longword">${element}</mark> `
                 }
                 else if (element.length - 1 == 5) {
-                str += `<mark class="words">${element}</mark> `
-                } 
+                    str += `<mark class="words">${element}</mark> `
+                }
             }
             else {
                 if (longestLength == element.length && longestLength > 4) {
@@ -101,27 +102,59 @@ const wordFactoryFunction = (storedSentences) => {
 
     const storeFiveSentences = sentenceVal => {
 
+        const lengthOfSentence = sentenceVal.split(" ").length;
+
         if (arr[4]) {
             arr.splice(0, 1);
             arr.push({
                 sentence: sentenceVal,
-                length: 1
+                length: lengthOfSentence
             })
         }
-        else{
+        else {
             arr.push({
                 sentence: sentenceVal,
-                length: 1
+                length: lengthOfSentence
             })
         }
-     
+
         return arr;
+    }
+
+    const averageNumber = () => {
+        let avgNum = 0
+        let numberOfSentences = 0
+
+        arr.forEach(element => {
+            avgNum += element.length
+            numberOfSentences += 1
+        })
+        
+        storeAvg = Math.round(avgNum / numberOfSentences);
+        return storeAvg
+    }
+
+    const showingAvgForLastSentence = () => {
+        let latestSentence = arr.pop();
+        let dot = ''
+     
+        if (latestSentence.length > storeAvg) {
+            dot += `<span class="greendot"></span>`
+        }
+        else {
+            dot += `<span class="orangedot"></span>`
+        }
+
+        latestSentence.dots = dot
+        return latestSentence
     }
 
     return {
         analyze,
         highlightedWords,
         numberOfWordsInSentence,
-        storeFiveSentences
+        storeFiveSentences,
+        averageNumber,
+        showingAvgForLastSentence
     }
 }
