@@ -24,12 +24,15 @@ const wordFactoryFunction = (storedSentences) => {
 
         words.forEach(element => {
             if (element.includes('.')) {
-                if (longestLength == element.length - 1) {
+                if (longestLength == element.length - 1 ) {
                     wordsMoreThanFourStr += `<mark class="longword">${element}</mark> `
                 }
-                else if (element.length - 1 == 5) {
+                else if (element.length - 1 >= 5) {
                     wordsMoreThanFourStr += `<mark class="words">${element}</mark> `
                 } 
+                else {
+                    wordsMoreThanFourStr += `${element} `
+                }
             }
             else {
                 if (longestLength == element.length) {
@@ -75,7 +78,7 @@ const wordFactoryFunction = (storedSentences) => {
 
         words.forEach(element => {
             if (element.includes('.')) {
-                if (longestLength == element.length - 1) {
+                if (longestLength == element.length - 1 && longestLength > 4) {
                     str += `<mark class="longword">${element}</mark> `
                 }
                 else if (element.length - 1 == 5) {
@@ -83,7 +86,7 @@ const wordFactoryFunction = (storedSentences) => {
                 } 
             }
             else {
-                if (longestLength == element.length) {
+                if (longestLength == element.length && longestLength > 4) {
                     str += `<mark class="longword">${element}</mark> `
                 }
 
@@ -96,15 +99,22 @@ const wordFactoryFunction = (storedSentences) => {
         return str;
     }
 
-    const storeFiveSentences = sentence => {
+    const storeFiveSentences = sentenceVal => {
 
         if (arr[4]) {
             arr.splice(0, 1);
-            arr.push(sentence)
+            arr.push({
+                sentence: sentenceVal,
+                length: 1
+            })
         }
-        else {
-            arr.push(sentence)
+        else{
+            arr.push({
+                sentence: sentenceVal,
+                length: 1
+            })
         }
+     
         return arr;
     }
 

@@ -8,8 +8,9 @@ const longestWords = document.querySelector('.longestWordsDisplay')
 const displayFiveSentences = document.querySelector('.displayFiveSentences')
 
 let dataFromLocal
-if (localStorage['sentences']) {
-    dataFromLocal = JSON.parse(localStorage.getItem('sentences'));
+
+if (localStorage['storeSentences']) {
+    dataFromLocal = JSON.parse(localStorage.getItem('storeSentences'));
 } else {
     dataFromLocal = []
 }
@@ -17,23 +18,11 @@ let arr = dataFromLocal;
 
 const wordInstance = wordFactoryFunction(dataFromLocal);
 
-// var user = {
-//     author : true,
-//     firstName : "Jo",
-//     lastName : "Blogss"
-//    };
-
-// var templateString = document.querySelector('.entry').innerHTML;
-
-// var templateInstance = Handlebars.compile(templateString);
-
-// var html = templateInstance(user);
-
 const wordGame = () => {
-    
+
     const sentence = textElem.value
     const newArray = sentence.split(' ');
-    
+
     if (newArray[4] == undefined) {
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
         setTimeout(() => errorElem.innerHTML = "", 5000);
@@ -43,30 +32,44 @@ const wordGame = () => {
     else if (newArray[4] != undefined) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
-        // displayFiveSentences.innerHTML = wordInstance.storeFiveSentences(sentence)
-        
-        // localStorage['sentences'] = JSON.stringify(arr);
-        // let list = dataFromLocal;
-        // displayFiveSentences.innerHTML = list;
-    }    
+        var templateString = document.querySelector('.entry-template').innerHTML;
+
+        let context = {
+            "sentences": wordInstance.storeFiveSentences(sentence)
+        };
+
+        let templateScript = Handlebars.compile(templateString); 
+        displayFiveSentences.innerHTML = templateScript(context);
+
+        localStorage['storeSentences'] = JSON.stringify(arr);
+    }
 }
 
 const hideAndHighlight = () => {
 
     const sentence = textElem.value
 
-    console.log('asdbgnhmj,ksdfghjkl'+sentence)
-
-    if(checkBox.checked == false){
+    if (checkBox.checked == false) {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
-        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)      
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
     }
-    else if(checkBox.checked == true && textElem.value == ""){
+    else if (checkBox.checked == true && textElem.value == "") {
         errorElem.innerHTML = 'Please enter a sentence that has more than 5 words'
         setTimeout(() => errorElem.innerHTML = "", 5000);
     }
-    else if(checkBox.checked == true){
+    else if (checkBox.checked == true) {
         displaySentence.innerHTML = `Showing only highlighted words : ${wordInstance.highlightedWords(sentence)}`
-        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence) 
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
     }
 }
+
+displayFiveSentences.addEventListener('click',function(element) {
+    console.log('checking: ' + JSON.stringify(element))
+    
+    if(element.target.className == 'eachSentence'){
+        const specificSentence = element.target.textContent
+        console.log(specificSentence)
+        displaySentence.innerHTML = wordInstance.analyze(specificSentence)
+        displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(specificSentence)
+    }
+})

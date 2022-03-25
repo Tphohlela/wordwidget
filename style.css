@@ -15,4 +15,28 @@ body{
     text-align: center;   
 }
 
+table.table-bordered {
+    border:1px solid black;
+  }
+
 .checkbox {width: 29px; height: 29px;}
+
+.legend span {
+    border: 1px solid #ccc;
+    float: left;
+    width: 16px;
+    height: 20px;
+    margin: 4px;
+}
+
+.legend .purple {
+    background-color: rgb(132, 132, 236);
+}
+
+.legend .yellow {
+    background-color: yellow;
+}
+
+.legend {
+    list-style: none;
+}
