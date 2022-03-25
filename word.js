@@ -9,8 +9,8 @@ const displayFiveSentences = document.querySelector('.displayFiveSentences')
 
 let dataFromLocal
 
-if (localStorage['storeSentences']) {
-    dataFromLocal = JSON.parse(localStorage.getItem('storeSentences'));
+if (localStorage['store']) {
+    dataFromLocal = JSON.parse(localStorage.getItem('store'));
 } else {
     dataFromLocal = []
 }
@@ -45,7 +45,7 @@ const wordGame = () => {
         let templateScript = Handlebars.compile(templateString); 
         displayFiveSentences.innerHTML = templateScript(context);
 
-        localStorage['storeSentences'] = JSON.stringify(arr);
+        localStorage['store'] = JSON.stringify(arr);
         //localStorage.clear()
     }
 }
