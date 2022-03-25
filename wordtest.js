@@ -87,7 +87,7 @@ describe('Word game factory function', () => {
             assert.equal(6, word.averageNumber());
         });
 
-        it('should show a orange dot if last sentence average is less than the average number for all the sentences ', () => {
+        it('should show a orange dot if total words in last sentence is less than the average number of total words for all the sentences ', () => {
             const word = wordFactoryFunction();
 
             word.storeFiveSentences('Are you having a great day')
@@ -101,7 +101,7 @@ describe('Word game factory function', () => {
             assert.equal('🟠', word.showingAvgForLastSentence());
         });
 
-        it('should show a green dot if last sentence average is greater than the average number for all the sentences ', () => {
+        it('should show a green dot if total words in last sentence is greater than the average number of total words for all the sentences ', () => {
             const word = wordFactoryFunction();
 
             word.storeFiveSentences('Are you having a great day')
@@ -114,7 +114,7 @@ describe('Word game factory function', () => {
             assert.equal('🟢', word.showingAvgForLastSentence());
         });
 
-        it('should show nothing if last sentence average is equal to the average number for all the sentences ', () => {
+        it('should show nothing if total words in last sentence is equal to the average number of total words for all the sentences ', () => {
             const word = wordFactoryFunction();
 
             word.storeFiveSentences('Are you having a great day')
