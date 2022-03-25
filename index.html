@@ -65,25 +65,45 @@
 
             <ul class="sentenceLength"></ul>
 
+
             <script class="entry-template" type="text/x-handlebars-template">
-                           <table class="table table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">Sentences entered</th>
-                      </tr>
-                    </thead>
-                    
-                    <tbody>
-                        {{#each sentences}}
-                      <tr>
-                        <td class="eachSentence">{{sentence}}</td>
-                      </tr>
-                      {{/each}}
-                    </tbody>
-                  </table>
+                <div class="d-flex flex-row">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">Sentences entered</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {{#each sentences}}
+                          <tr>
+                            <td class="eachSentence">{{sentence}}</td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Latest sentence</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+            
+                          <tr>
+                            <td class=""><span class="mt-1 h5">Average word length for all sentences is {{avLength}}</span><div>🟢 = number of words in latest sentence is greater than average words of all the sentences</div><div>🟠 = number of words in latest sentence is less than average words of all the sentences</div><div class="dotTemplate"><span class="emoji role="img"></span></div><div class="dotTemplate"><span class="emoji role="img">{{dotVal}}</span></div></td>
+                          </tr>
+                        
+                        </tbody>
+                      </table>
+                </div>
+                       
             </script>
 
             <div class="displayFiveSentences"></div>
+            <div class="displayDot"></div>
         </div>
     </div>
 

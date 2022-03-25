@@ -35,13 +35,18 @@ const wordGame = () => {
         var templateString = document.querySelector('.entry-template').innerHTML;
 
         let context = {
-            "sentences": wordInstance.storeFiveSentences(sentence)
+            "sentences": wordInstance.storeFiveSentences(sentence),
+            "dotVal" : wordInstance.showingAvgForLastSentence(),
+            "avLength": wordInstance.averageNumber(),
         };
+        console.log('average:' + wordInstance.averageNumber())
+        console.log('dot' + JSON.stringify(wordInstance.showingAvgForLastSentence()))
 
         let templateScript = Handlebars.compile(templateString); 
         displayFiveSentences.innerHTML = templateScript(context);
 
         localStorage['storeSentences'] = JSON.stringify(arr);
+        //localStorage.clear()
     }
 }
 
@@ -65,7 +70,7 @@ const hideAndHighlight = () => {
 
 displayFiveSentences.addEventListener('click',function(element) {
     console.log('checking: ' + JSON.stringify(element))
-    
+
     if(element.target.className == 'eachSentence'){
         const specificSentence = element.target.textContent
         console.log(specificSentence)

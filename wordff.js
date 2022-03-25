@@ -104,6 +104,7 @@ const wordFactoryFunction = (storedSentences) => {
 
         const lengthOfSentence = sentenceVal.split(" ").length;
 
+
         if (arr[4]) {
             arr.splice(0, 1);
             arr.push({
@@ -129,24 +130,25 @@ const wordFactoryFunction = (storedSentences) => {
             avgNum += element.length
             numberOfSentences += 1
         })
-        
+
         storeAvg = Math.round(avgNum / numberOfSentences);
         return storeAvg
     }
 
     const showingAvgForLastSentence = () => {
-        let latestSentence = arr.pop();
-        let dot = ''
-     
-        if (latestSentence.length > storeAvg) {
-            dot += `<span class="greendot"></span>`
-        }
-        else {
-            dot += `<span class="orangedot"></span>`
-        }
 
-        latestSentence.dots = dot
-        return latestSentence
+        averageNumber();
+
+        let latestSentence = arr[arr.length - 1];
+        let dot = ''
+
+        if (latestSentence.length > storeAvg) {
+            dot += '🟢'
+        }
+        else if (latestSentence.length < storeAvg) {
+            dot += '🟠'
+        }
+        return dot
     }
 
     return {
