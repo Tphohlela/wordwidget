@@ -33,20 +33,22 @@ const wordGame = () => {
         displaySentence.innerHTML = wordInstance.analyze(sentence)
         displaySentenceLength.innerHTML = wordInstance.numberOfWordsInSentence(sentence)
         var templateString = document.querySelector('.entry-template').innerHTML;
+        console.log('validation' + wordInstance.storeFiveSentences(sentence))
 
         let context = {
             "sentences": wordInstance.storeFiveSentences(sentence),
             "dotVal" : wordInstance.showingAvgForLastSentence(),
             "avLength": wordInstance.averageNumber(),
         };
-        console.log('average:' + wordInstance.averageNumber())
+       
         console.log('dot' + JSON.stringify(wordInstance.showingAvgForLastSentence()))
 
         let templateScript = Handlebars.compile(templateString); 
         displayFiveSentences.innerHTML = templateScript(context);
+        setTimeout(() => errorElem.innerHTML = "", 5000);
 
         localStorage['store'] = JSON.stringify(arr);
-        //localStorage.clear()
+    //localStorage.clear()
     }
 }
 

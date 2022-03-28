@@ -103,26 +103,30 @@ const wordFactoryFunction = (storedSentences) => {
     const storeFiveSentences = sentenceVal => {
 
         const lengthOfSentence = sentenceVal.split(" ").length;
-
-
-        if (arr[4]) {
-            arr.splice(0, 1);
-            arr.push({
-                sentence: sentenceVal,
-                length: lengthOfSentence
-            })
+       
+        if (arr.some(element => element.sentence === sentenceVal)) {
+            return arr;
         }
         else {
-            arr.push({
-                sentence: sentenceVal,
-                length: lengthOfSentence
-            })
-        }
+            if (arr[4]) {
+                arr.splice(0, 1);
+                arr.push({
+                    sentence: sentenceVal,
+                    length: lengthOfSentence
+                })
+            }
+            else {
+                arr.push({
+                    sentence: sentenceVal,
+                    length: lengthOfSentence
+                })
+            }
 
+        }
         return arr;
     }
 
-    const averageNumber = () => {
+     const averageNumber = () => {
         let avgNum = 0
         let numberOfSentences = 0
 
@@ -136,13 +140,14 @@ const wordFactoryFunction = (storedSentences) => {
     }
 
     const showingAvgForLastSentence = () => {
-
-        averageNumber();
-
+       averageNumber()
+     
         let latestSentence = arr[arr.length - 1];
         let dot = ''
-
-        if (latestSentence.length > storeAvg) {
+        if (latestSentence.length == storeAvg) {
+            dot += ''
+        }
+       else if (latestSentence.length > storeAvg) {
             dot += '🟢'
         }
         else if (latestSentence.length < storeAvg) {
@@ -157,6 +162,6 @@ const wordFactoryFunction = (storedSentences) => {
         numberOfWordsInSentence,
         storeFiveSentences,
         averageNumber,
-        showingAvgForLastSentence
+        showingAvgForLastSentence,
     }
 }

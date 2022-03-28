@@ -57,11 +57,21 @@ describe('Word game factory function', () => {
             word.storeFiveSentences('When is winter coming in Cape Town')
             word.storeFiveSentences('We must recognize that spinach is delicious')
             word.storeFiveSentences('Hello my name is Thato')
+            word.storeFiveSentences('Hello my name is Beyonce')
             const result = word.storeFiveSentences('Spinach is green and delicious')
 
-            assert.equal('Beyonce is a superstar and is amazing', result[0].sentence);
+            assert.equal('When is winter coming in Cape Town', result[0].sentence);
+            assert.equal('Spinach is green and delicious', result[4].sentence);
         });
+        it('should not add the same sentence to array ', () => {
+            const word = wordFactoryFunction();
+            word.storeFiveSentences('Are you having a great day')
+            word.storeFiveSentences('Hello my name is Thato')
+            word.storeFiveSentences('Hello my name is Thato')
 
+            assert.deepEqual([{ sentence: 'Are you having a great day', length: 6 }, { sentence: 'Hello my name is Thato', length: 5 }] , word.storeFiveSentences('Hello my name is Thato'));
+        });
+        
     })
 
     describe('Average number section', () => {
@@ -118,7 +128,7 @@ describe('Word game factory function', () => {
             const word = wordFactoryFunction();
 
             word.storeFiveSentences('Are you having a great day')
-            word.storeFiveSentences('Beyonce is a great superstar ')
+            word.storeFiveSentences('Beyonce is a great superstar')
             word.storeFiveSentences('When is winter coming soon')
             word.storeFiveSentences('We must recognize that spinach')
             word.storeFiveSentences('Hello my name is Thato')
