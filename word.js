@@ -6,6 +6,13 @@ const errorElem = document.querySelector('.error')
 const checkBox = document.querySelector('.checkbox')
 const longestWords = document.querySelector('.longestWordsDisplay')
 const displayFiveSentences = document.querySelector('.displayFiveSentences')
+// const slider = document.querySelector('.points')
+// let output = document.querySelector(".display");
+// output.innerHTML = slider.value;
+
+// slider.oninput = function () {
+//     output.innerHTML = this.value;
+// }
 
 let dataFromLocal
 
@@ -17,6 +24,16 @@ if (localStorage['store']) {
 let arr = dataFromLocal;
 
 const wordInstance = wordFactoryFunction(dataFromLocal);
+
+var templateString = document.querySelector('.entry-template').innerHTML;
+let context = {
+    "sentences": wordInstance.getSentences(),
+    "dotVal": wordInstance.showingAvgForLastSentence(),
+    "avLength": wordInstance.averageNumber(),
+};
+
+let templateScript = Handlebars.compile(templateString);
+displayFiveSentences.innerHTML = templateScript(context);
 
 const wordGame = () => {
 
@@ -37,18 +54,21 @@ const wordGame = () => {
 
         let context = {
             "sentences": wordInstance.storeFiveSentences(sentence),
-            "dotVal" : wordInstance.showingAvgForLastSentence(),
+            "dotVal": wordInstance.showingAvgForLastSentence(),
             "avLength": wordInstance.averageNumber(),
         };
-       
+
         console.log('dot' + JSON.stringify(wordInstance.showingAvgForLastSentence()))
 
-        let templateScript = Handlebars.compile(templateString); 
+        let templateScript = Handlebars.compile(templateString);
         displayFiveSentences.innerHTML = templateScript(context);
-        setTimeout(() => errorElem.innerHTML = "", 5000);
+
+        // console.log(`sdfghn ${wordInstance.errorMsg()}`)
+        // errorElem.innerHTML = wordInstance.errorMsg()
+        // setTimeout(() => errorElem.innerHTML = "", 5000);
 
         localStorage['store'] = JSON.stringify(arr);
-    //localStorage.clear()
+        //localStorage.clear()
     }
 }
 
@@ -70,10 +90,10 @@ const hideAndHighlight = () => {
     }
 }
 
-displayFiveSentences.addEventListener('click',function(element) {
+displayFiveSentences.addEventListener('click', function (element) {
     console.log('checking: ' + JSON.stringify(element))
 
-    if(element.target.className == 'eachSentence'){
+    if (element.target.className == 'eachSentence') {
         const specificSentence = element.target.textContent
         console.log(specificSentence)
         displaySentence.innerHTML = wordInstance.analyze(specificSentence)

@@ -101,7 +101,6 @@ const wordFactoryFunction = (storedSentences) => {
     }
 
     const storeFiveSentences = sentenceVal => {
-
         const lengthOfSentence = sentenceVal.split(" ").length;
        
         if (arr.some(element => element.sentence === sentenceVal)) {
@@ -121,8 +120,12 @@ const wordFactoryFunction = (storedSentences) => {
                     length: lengthOfSentence
                 })
             }
-
+            error = ``
         }
+        return arr;
+    }
+
+    const getSentences = () => {
         return arr;
     }
 
@@ -163,5 +166,6 @@ const wordFactoryFunction = (storedSentences) => {
         storeFiveSentences,
         averageNumber,
         showingAvgForLastSentence,
+        getSentences
     }
 }
